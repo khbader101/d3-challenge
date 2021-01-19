@@ -62,6 +62,25 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     .attr("r", "15")
     .attr("fill", "lightblue")
     .attr("opacity", "1");
+
+    var circleLabels = chartGroup.selectAll(null).data(stateData).enter().append("text");
+
+    circleLabels
+      .attr("x", function(d) {
+        return xLinearScale(d.poverty);
+      })
+      .attr("y", function(d) {
+        return yLinearScale(d.healthcare);
+      })
+      .text(function(d) {
+        return d.abbr;
+      })
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "10px")
+      .attr("text-anchor", "middle")
+      .attr("fill", "black");
+
+      
     // Step 6: Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
@@ -96,19 +115,5 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
       .text("In Poverty (%)");
   }).catch(function(error) {
     console.log(error);
-  
-
-
-    
-  // var textNew = chartGroup.selectAll(".stateText")
-  //       .data(stateData)
-  //       .enter()
-  //       .append("text")
-  //       .classed("stateText", true)
-  //       .attr("x", d => xLinearScale(d[bottomAxis]))
-  //       .attr("y", d => yLinearScale(d[leftAxis]))
-  //       .attr("dy", 3)
-  //       .attr("font-size", "10px")
-  //       .text(function(d){return d.abbr});
 
       });
