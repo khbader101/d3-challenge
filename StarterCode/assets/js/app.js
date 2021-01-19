@@ -66,7 +66,7 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     // ==============================
     var toolTip = d3.tip()
     .attr("class", "tooltip")
-    .offset([0, 100])
+    .offset([60, -80])
     .html(function(d) {
       return (`${d.state}<br>Poverty (%): ${d.poverty}<br>Healthcare (%): ${d.healthcare}`);
     });
@@ -98,15 +98,17 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     console.log(error);
   
 
-  var textNew = circleGroup.selectAll(".stateText")
-        .data(stateData)
-        .enter()
-        .append("text")
-        .classed("stateText", true)
-        .attr("x", d => xLinearScale(d.poverty))
-        .attr("y", d => yLinearScale(d.healthcare))
-        .attr("dy", 3)
-        .attr("font-size", "10px")
-        .text(function(d){return d.abbr});
+
+    
+  // var textNew = chartGroup.selectAll(".stateText")
+  //       .data(stateData)
+  //       .enter()
+  //       .append("text")
+  //       .classed("stateText", true)
+  //       .attr("x", d => xLinearScale(d[bottomAxis]))
+  //       .attr("y", d => yLinearScale(d[leftAxis]))
+  //       .attr("dy", 3)
+  //       .attr("font-size", "10px")
+  //       .text(function(d){return d.abbr});
 
       });
