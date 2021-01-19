@@ -33,8 +33,8 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(stateData, d => d.poverty)])
-    .range([0, width]);
+    .domain([8, d3.max(stateData, d => d.poverty)])
+    .range([5, width]);
 
     var yLinearScale = d3.scaleLinear()
     .domain([0, d3.max(stateData, d => d.healthcare)])
@@ -98,13 +98,13 @@ d3.csv("assets/data/data.csv").then(function(stateData) {
     console.log(error);
   
 
-  var textNew = chartGroup.selectAll(".stateText")
+  var textNew = circleGroup.selectAll(".stateText")
         .data(stateData)
         .enter()
         .append("text")
         .classed("stateText", true)
-        .attr("x", d => xLinearScale(d[chosenXAxis]))
-        .attr("y", d => yLinearScale(d[chosenYAxis]))
+        .attr("x", d => xLinearScale(d.poverty))
+        .attr("y", d => yLinearScale(d.healthcare))
         .attr("dy", 3)
         .attr("font-size", "10px")
         .text(function(d){return d.abbr});
